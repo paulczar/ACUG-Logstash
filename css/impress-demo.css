@@ -62,6 +62,7 @@ ol, ul {
 }
 blockquote, q {
     quotes: none;
+    font-size: 45px;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
@@ -165,7 +166,7 @@ a:focus {
 
 .step {
     position: relative;
-    width: 900px;
+    width: 1200px;
     padding: 40px;
     margin: 20px auto;
 
@@ -176,7 +177,7 @@ a:focus {
     box-sizing:         border-box;
 
     font-family: 'PT Serif', georgia, serif;
-    font-size: 48px;
+    font-size: 30px;
     line-height: 1.5;
 }
 
@@ -209,8 +210,8 @@ a:focus {
 .slide {
     display: block;
 
-    width: 900px;
-    height: 700px;
+    width: 1000px;
+    height: 800px;
     padding: 40px 60px;
 
     background-color: white;
@@ -237,6 +238,16 @@ a:focus {
 
 .slide q strong {
     white-space: nowrap;
+}
+
+.slide h1 {
+    font-size: 45px;
+    text-align: center;
+}
+
+.step h1 {
+    font-size: 45px;
+    text-align: center;
 }
 
 /*
@@ -516,7 +527,9 @@ a:focus {
     to be able to click on other steps.
 
 */
-#overview { display: none }
+#overview {
+    display: none
+}
 
 /*
     We also make other steps visible and give them a pointer cursor using the
