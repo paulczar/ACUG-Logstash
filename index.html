@@ -126,17 +126,6 @@
         <h1 align="center">LOG = TIMESTAMP + DATA</h1>
     </div>
 
-    <div class="step slide" data-x="0" data-y="-1500">
-          <h1 align="center">What is a log?</h1><br>
-          <p align="center">A log is a human readable, machine parsable representation of an event.</p><br>
-          <span class="fragment">
-          <p style="text-align: left;"><font color="blue">Jan 19 13:01:13</font> <font color="magenta">paulcz-laptop anacron[7712]: Normal exit (0 jobs run)</font>
-          <p style="text-align: left;"><font color="blue">120607 14:07:00</font> <font color="magenta">InnoDB: Starting an apply batch of log records to the database...</font>
-          <p style="text-align: left;"><font color="blue">[1225306053]</font> <font color="magenta">SERVICE ALERT: FTPSERVER;FTP SERVICE;OK;SOFT;2;FTP OK - 0.029 second response time on port 21 [220 ProFTPD 1.3.1 Server ready.]</font>
-          <p style="text-align: left;"><font color="blue">[Sat Jan 19 01:04:25 2013]</font> <font color="magenta">[error] [client 78.30.200.81] File does not exist: /opt/www/vhosts/crappywebsite/html/robots.txt</font>
-          </span>
-    </div>
-
     <div class="step" data-x="0" data-y="0" data-rotate="270" align="center">
           <h1>Stop inventing <strong>date formats</strong></h1>
           <br><BR><BR><BR><BR><BR><BR><BR><BR><br>
@@ -175,11 +164,8 @@
              <img src="images/apache_logs_WAT.png">
     </div>
 
-    <div class="step" data-x="2500" data-y="500" data-scale="1.5">
-             <p>But they're machine parsable ... <i>right?</i></p>
-    </div>
-
     <div class="step" data-x="2500" data-y="700" data-scale="1.5">
+             <p>But they're machine parsable ... <i>right?</i></p>
              <pre><code>
 208.115.111.74 - - [13/Jan/2013:04:28:55 -0500] "GET /robots.txt HTTP/1.1" 
     301 303 "-" "Mozilla/5.0 (compatible; Ezooms/1.0; ezooms.bot@gmail.com)"
@@ -187,6 +173,7 @@
     </div>
 
     <div class="step" data-x="3080" data-y="200" data-scale=".5" data-rotate="180">
+          <p align="center"><i>http://xkcd.com</i></p>
          <img class="fragment" src="images/apache-regex-dude.png" width="900">
     </div>
 
@@ -194,6 +181,11 @@
              <img src="images/apache_regex.png">
              <h1>Actual Regex to parse apache logs.</h1>
     </div>
+
+    <div class="step" data-x="3100" data-y="-20" data-scale=".5" data-rotate="180">
+    </div>
+
+
 
     <div id="howlog" class="step" data-x="-2500" data-y="2500" data-rotate="270" data-scale="3">
         <h1>Evolution of log processing</h1>
@@ -233,12 +225,25 @@ $ grep -r -I "Invalid user " /rsyslog/*/auth.log* | awk '{ print $10; }'
 
     <div class="step" data-x="-1300" data-y="1950" data-rotate="180" align="center" data-scale=".5">
         <h1>Stage 4 - Start Using Splunk</h1>
+        <img src="images/splunk.jpg" />
+        <p><i>gis://splunk+screenshot</i></p>
+    </div>    
+
+    <div class="step" data-x="-1300" data-y="1950" data-rotate="180" align="center" data-scale=".01">
+        <h1>Very Nice!</h1>
         <img src="images/borat-swimsuit.jpg" />
+    </div>    
+
+    <div class="step" data-x="-1320" data-y="1950" data-rotate="180" align="center" data-scale=".01">
+        <h1>The first one is free</h1>
+        <p>500MB per day</p>
+        <img src="images/drug_dealer.jpg" />
     </div>    
 
     <div class="step" data-x="-1900" data-y="1950" data-rotate="90" align="center" data-scale=".5">
         <h1>Stage 5 - Get your first <br>invoice from Splunk</h1>
         <img src="images/funny-scared-cat-face.jpg" width="50%" height="50%" />
+        <p>$,$$$,$$$</p>
     </div>    
 
     <div class="step" data-x="-1800" data-y="1975" data-scale=".25" data-z="-100">
@@ -246,7 +251,8 @@ $ grep -r -I "Invalid user " /rsyslog/*/auth.log* | awk '{ print $10; }'
         <li><b> Logstash </b></li>
         <li> Graylog</li>
         <li> LOGalyse</li>
-        <li> ...</li>
+        <li> Scribe </li>
+        <li> Hadoooooop </li>
     </div>    
 
     <div id="logstash" class="step" data-x="5000" data-y="500" data-scale="30">
@@ -321,7 +327,8 @@ output {
     </div>
     <div id="grok_filter" class="step" data-x="5500" data-y="-3050" data-rotate="0" data-scale="1">
               <h1>grok</h1>
-              <p>Grok parses arbitrary text and structures it.   
+              <p>helps parse arbitrary text and structures it.   
+              <p>labels instead of regex patterns.
 
               <pre><code style="width:1100px;">
 USERNAME [a-zA-Z0-9_-]+
@@ -338,7 +345,7 @@ COMBINEDAPACHELOG %{IPORHOST:clientip} %{USER:ident} %{USER:auth}
               </code></pre>
     </div>
 
-    <div class="step" data-x="5500" data-y="-2980" data-rotate="0" data-scale=".2">
+    <div class="step" data-x="5500" data-y="-2955" data-rotate="0" data-scale=".2">
               <h1>Turns complex regular expressions into<br> simple and repeatable patterns.</h1>
               <p align="center"><i>pattern => ["%{USER} %{MONTH}"]</i></p>
     </div>                
@@ -380,7 +387,7 @@ filter {
     </div>
 
     <div id="date_filter" class="step" data-x="3700" data-y="-850" data-rotate="270" data-scale="2">
-          <h1>Filter - Date</h1>
+          <h1>Date</h1>
           <p>takes a timestamp and makes it ISO 8601 Compliant</p>
           <p>Turns this:</p>
           <pre><code>13/Jan/2013:04:28:55 -0500</code></pre>
@@ -390,7 +397,7 @@ filter {
     </div>    
 
     <div class="step" data-x="3700" data-y="-850" data-rotate="270" data-scale=".1">
-          <h1>Filter - Date</h1>
+          <h1>Date</h1>
     <pre><code>
 filter {
           date {
